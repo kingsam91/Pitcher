@@ -1,0 +1,42 @@
+import os
+
+class Config:
+
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    #  email configurations
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = "dicelocco78"
+    MAIL_PASSWORD = ""
+    SUBJECT_PREFIX = 'Watchlist'
+    SENDER_EMAIL = 'james@moringaschool.com'
+
+# simple mde  configurations
+    SIMPLEMDE_JS_IIFE = True
+    SIMPLEMDE_USE_CDN = True
+    @staticmethod
+    def init_app(app):
+        pass
+
+
+class ProdConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    pass
+
+class TestConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kingsam:kingsam@localhost/pitch_test'
+
+class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://kingsam:kingsam@localhost/pitch'
+    DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig,
+'test':TestConfig
+
+}
