@@ -11,6 +11,11 @@ Pitches can be loaded onto a webpage and user can comfortably interact with the 
 ## How To Run
 
 Pitches being python based, one runs in terminal 
+
+First activate virtual enviroment 
+```bash
+source virtual/bin/activate
+```
 ```bash
 python manage.py runserver
 ```
@@ -21,6 +26,7 @@ python manage.py runserver
 2. CSS
 3. Bootstrap
 4. Python
+5. Flask
 
 
 ## Known Bugs
