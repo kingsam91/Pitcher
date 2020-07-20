@@ -1,0 +1,38 @@
+{% extends 'base.html'%}
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-7">
+            <ol>
+                {% for id, name,created_at in mycategories %}
+
+                <li>{{name}}</li>
+
+                {% endfor %}
+            </ol>
+        </div>
+
+        <div class="col-lg-5">
+            {% if message%}
+            <h3>{{message}}</h3>
+            {%endif%}
+
+            <form method="POST">
+                <input type="text" name="name" placeholder="Add category" class="form-control">
+                <br />
+                <input type="submit" value="Submit" class="btn btn-default">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+
+</div>
+
+{% endblock%}

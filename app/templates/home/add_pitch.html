@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container">
+
+    {% if message%}
+    <h3>{{message}}</h3>
+    {%endif%}
+
+    <form method="POST">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Categories</label>
+            <select name="category_id" class="form-control">
+                <option value="1">Select category</option>
+
+                {% for id, name,created_at in mycategories %}
+
+                <option value="{{id}}">{{name}}</option>
+
+                {% endfor %}
+
+            </select>
+        </div>
+        <input type="hidden" name="user_id" value="{{current_user.id}}" />
+        <input type="submit" value="Submit" class="btn btn-default">
+    </form>
+
+</div>
+
+<div class="container">
+
+</div>
+
+{% endblock%}

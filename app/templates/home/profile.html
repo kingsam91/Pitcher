@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+<!-- Content block -->
+{% block content %}
+
+<div class="container">
+    <h3>My Pitches</h3>
+
+    <div class="row">
+        {% for id, name, upvotes, downvotes, created_at in mypitches %}
+
+        <div class="col-lg-12">
+            <hr />
+            <p>
+                {{name}}
+            </p>
+            <p>
+                <button class="btn btn-primary">Up votes: {{upvotes}}</button>
+                &nbsp;&nbsp;
+                <button class="btn btn-primary">Down votes: {{downvotes}}</button>
+            </p>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock%}
