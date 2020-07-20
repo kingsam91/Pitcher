@@ -39,4 +39,36 @@ class User(UserMixin,db.Model):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+class Category(db.Model):
+    __tablename__ = 'categories'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), unique=True)
+    created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
+    pitches = db.relationship(
+        'Pitch', backref='category', lazy="dynamic")
+
+    def __init__(self, name):
+        self.name = name
+
+    def save_category(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_categories(cls):
+        rows = Category.query.all()
+        return rows
+
+    def __repr__(self):
+        return f'User {self.name}'
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'created_at': self.created_at
+        }
+
+
 
