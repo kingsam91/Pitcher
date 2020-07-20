@@ -1,6 +1,6 @@
 from . import db, login_manager
 import datetime
-from flask import Flask
+from flask import Flask, request, jsonify, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -11,7 +11,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255), unique=True, index=True)
     password_hash = db.Column(db.String(255))
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
-    # pitches = db.relationship('Pitch', backref='user', lazy="dynamic")
+    pitches = db.relationship('Pitch', backref='user', lazy="dynamic")
 
     pass_secure  = db.Column(db.String(255))
 
@@ -26,14 +26,13 @@ class User(UserMixin,db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    # def save_user(self):
-    #     db.session.add(self)
-    #     db.session.commit()
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'User {self.username}'
 
-    # from . import login_manager
 
 @login_manager.user_loader
 def load_user(user_id):

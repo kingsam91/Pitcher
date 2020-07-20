@@ -10,10 +10,10 @@ class Config:
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = "dicelocco78"
-    MAIL_PASSWORD = ""
+    MAIL_USERNAME = "beresnasam123@gmail.com"
+    MAIL_PASSWORD = "sams1234"
     SUBJECT_PREFIX = 'Watchlist'
-    SENDER_EMAIL = 'james@moringaschool.com'
+    SENDER_EMAIL = 'beresnasam123@gmail.com'
 
 # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
