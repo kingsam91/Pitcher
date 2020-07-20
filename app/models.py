@@ -13,7 +13,7 @@ class User(UserMixin,db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     # pitches = db.relationship('Pitch', backref='user', lazy="dynamic")
 
- pass_secure  = db.Column(db.String(255))
+    pass_secure  = db.Column(db.String(255))
 
     @property
     def password(self):
@@ -33,7 +33,7 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-    from . import login_manager
+    # from . import login_manager
 
 @login_manager.user_loader
 def load_user(user_id):
